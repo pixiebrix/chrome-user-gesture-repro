@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "version": "1.0.0",
+  "author": "PixieBrix, Inc.",
+  "name": "Chrome User Gesture Error Repro",
+  "short_name": "PixieBrix",
+  "description": "Reproduction for Chrome User Gesture error when opening the sidepanel from a user gesture",
+  "homepage_url": "https://groups.google.com/a/chromium.org/g/chromium-extensions/c/WRGFOAHxoaY",
+  "minimum_chrome_version": "116.0",
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; font-src 'self' https://fonts.gstatic.com; connect-src 'self' http: https:; object-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https:; frame-src 'self' http: https:"
+  },
+  "permissions": ["activeTab", "tabs", "sidePanel"],
+  "action": {
+    "default_title": "Chrome User Gesture Error Repro"
+  },
+  "background": {
+    "service_worker": "serviceWorker.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "js": ["contentScript.js"],
+      "all_frames": true
+    }
+  ]
+}
